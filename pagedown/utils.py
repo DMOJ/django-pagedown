@@ -8,6 +8,12 @@ def compatible_staticpath(path):
     way to do this let me know!
     '''
     try:
+        # staticfiles app
+        from django.contrib.staticfiles.templatetags.staticfiles import static
+        return static(path)
+    except ImportError:
+        pass
+    try:
         # >= 1.4
         from django.templatetags.static import static
         return static(path)
